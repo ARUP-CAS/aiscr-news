@@ -1,0 +1,7 @@
+# Sdílená metadata článku (platí pro všechny jazykové verze).
+# Datum a slug se berou z názvu složky: RRRR-MM-DD-slug
+sites: [amcr-info, amcr, digiarchiv]
+time: "12:00"
+published: true
+author: ronald-harasim
+image: images/cover.svg

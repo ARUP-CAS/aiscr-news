@@ -1,0 +1,59 @@
+name: Build & publish feeds
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Nejmenší nutná oprávnění: číst kód, zapsat Pages deployment.
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # Na pull requestu se obsah jen zvaliduje — nic se nenasazuje.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # --ignore-scripts: závislosti nesmí spouštět install skripty
+      - run: npm ci --ignore-scripts
+
+      - name: Validace obsahu
+        run: npm run validate
+
+      - name: Build feedů
+        if: github.event_name != 'pull_request'
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write       # nasazení na Pages
+      id-token: write    # ověření původu deploymentu
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Nasazení na GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

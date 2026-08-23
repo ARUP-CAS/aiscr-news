@@ -1,0 +1,19 @@
+{
+  "name": "aiscr-news",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared aktuality/quick-info content for AIS CR sites — Markdown in, per-site JSON feeds out (GitHub Pages).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-feed.mjs",
+    "validate": "node scripts/build-feed.mjs --validate-only"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "js-yaml": "^5.3.0",
+    "markdown-it": "^14.1.0",
+    "sanitize-html": "^2.13.0"
+  }
+}

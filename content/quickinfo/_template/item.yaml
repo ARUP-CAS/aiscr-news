@@ -1,0 +1,4 @@
+# ŠABLONA quick-info (krátká notifikace do banneru) — zkopírujte složku
+# a přejmenujte na RRRR-MM-DD-slug. Složky začínající "_" build ignoruje.
+sites: [amcr-info]
+published: false
