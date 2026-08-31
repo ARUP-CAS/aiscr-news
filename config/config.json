@@ -1,13 +1,28 @@
 {
   "sites": {
+    "aiscr": "https://www.aiscr.cz/",
     "amcr-info": "https://amcr-info.aiscr.cz/",
     "amcr": "https://amcr.aiscr.cz/",
     "digiarchiv": "https://digiarchiv.aiscr.cz/"
   },
-  "locales": ["cs", "en"],
-  "types": ["news", "quickinfo"],
+  "locales": [
+    "cs",
+    "en"
+  ],
+  "types": [
+    "news",
+    "quickinfo"
+  ],
   "images": {
-    "allowedExtensions": [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"],
+    "allowedExtensions": [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".webp",
+      ".avif",
+      ".gif",
+      ".svg"
+    ],
     "warnKb": 500,
     "maxKb": 4096,
     "authorPhotoWarnKb": 200

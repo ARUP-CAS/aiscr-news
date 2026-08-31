@@ -1,0 +1,7 @@
+---
+title: Nový zpravodaj AMČR
+excerpt: V sekci ke stažení je nové číslo Zpravodaje AMČR.
+badge: Zpravodaj
+---
+
+V sekci [ke stažení](https://amcr-info.aiscr.cz/?page=documents) je k dispozici nové číslo [Zpravodaje AMČR (č. 9)](https://amcr-info.aiscr.cz/downloads/AMCR_info_09.pdf).

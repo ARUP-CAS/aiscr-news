@@ -1,13 +1,31 @@
 # Registr autorů. Článek smí odkazovat jen na autora z tohoto seznamu
-# (item.yaml → author: <slug>) a každý autor musí mít fotku v authors/photos/.
+# (item.yaml -> authors: [slug]) a každý autor musí mít fotku v authors/photos/.
 #
 # Přidání autora:
 #   1. přidejte záznam sem (klíč = slug, malá písmena a pomlčky),
-#   2. nahrajte fotku do authors/photos/ (čtvercová, ideálně ~400×400 px, < 200 kB).
+#   2. nahrajte fotku do authors/photos/ (čtvercová, ~400x400 px, do 200 kB).
 
-ronald-harasim:
-  name: Ronald Harasim
-  photo: photos/ronald-harasim.svg
-  # volitelné:
-  # role: Vývojář
-  # url: https://www.aiscr.cz/
+tym-ais-cr:
+  name: Tým AIS CR
+  role: Archeologický informační systém
+  photo: photos/tym-ais-cr.webp
+
+tomas-pavlon:
+  name: Tomáš Pavloň
+  role: Datový kurátor AMČR
+  photo: photos/tomas-pavlon.webp
+
+david-spacil:
+  name: David Spáčil
+  role: Datový kurátor
+  photo: photos/david-spacil.webp
+
+martina-kudlikova:
+  name: Martina Kudlíková
+  role: Výkonná redaktorka PV
+  photo: photos/martina-kudlikova.webp
+
+robert-antal:
+  name: Róbert Antal
+  role: Vedoucí Referátu archeologické památkové péče
+  photo: photos/robert-antal.webp

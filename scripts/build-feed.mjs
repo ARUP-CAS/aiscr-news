@@ -232,6 +232,17 @@ function loadAuthors() {
   return authors;
 }
 
+/** Validate shared images in /images (referenced as /images/... from any item). */
+function checkSharedImages() {
+  const dir = path.join(ROOT, 'images');
+  if (!fs.existsSync(dir)) return;
+  for (const f of fs.readdirSync(dir, { recursive: true }).map(String)) {
+    const rel = `images/${f.split(path.sep).join('/')}`;
+    if (fs.lstatSync(path.join(ROOT, rel)).isDirectory()) continue;
+    checkImageFile(rel);
+  }
+}
+
 // --- content items --------------------------------------------------------------
 function loadItem(type, folderName, authors) {
   const folderRel = `content/${type}/${folderName}`;
@@ -260,8 +271,9 @@ function loadItem(type, folderName, authors) {
     fail(metaFile, `neplatné YAML: ${e.message}`);
     return null;
   }
-  checkUnknownKeys(metaFile, meta, ['sites', 'time', 'published', 'author', 'image'],
+  checkUnknownKeys(metaFile, meta, ['sites', 'time', 'published', 'authors', 'image', 'readingTime'],
     'title/excerpt/badge patří do jazykových souborů (cs.md, en.md)');
+  if (meta.author !== undefined) fail(metaFile, 'místo "author" použijte seznam "authors: [slug]" (funguje i pro jednoho autora)');
 
   if (!Array.isArray(meta.sites) || meta.sites.length === 0) {
     fail(metaFile, '"sites" musí být neprázdný seznam');
@@ -271,15 +283,22 @@ function loadItem(type, folderName, authors) {
   if (typeof meta.published !== 'boolean') fail(metaFile, '"published" musí být true nebo false');
   if (meta.time != null && !/^\d{2}:\d{2}$/.test(String(meta.time))) fail(metaFile, `"time" musí být HH:MM (je ${JSON.stringify(meta.time)})`);
 
-  let author = null;
-  if (meta.author != null) {
-    if (!authors[meta.author]) {
-      fail(metaFile, `autor "${meta.author}" není v authors/authors.yaml — nejdřív ho tam přidejte (včetně fotky)`);
+  let itemAuthors = [];
+  if (meta.authors != null) {
+    if (!Array.isArray(meta.authors)) {
+      fail(metaFile, '"authors" musí být seznam, např. authors: [jana-novakova]');
     } else {
-      author = authors[meta.author];
+      for (const slug of meta.authors) {
+        if (!authors[slug]) fail(metaFile, `autor "${slug}" není v authors/authors.yaml — nejdřív ho tam přidejte (včetně fotky)`);
+        else itemAuthors.push(authors[slug]);
+      }
+      if (new Set(meta.authors).size !== meta.authors.length) warn(metaFile, 'v "authors" je někdo uvedený dvakrát');
     }
-  } else if (type === 'news') {
-    warn(metaFile, 'článek nemá autora ("author") — doplňte ho z authors/authors.yaml');
+  }
+  // autorství je nepovinné — krátké aktuality autora běžně nemají
+
+  if (meta.readingTime != null && typeof meta.readingTime !== 'string') {
+    fail(metaFile, '"readingTime" musí být text, např. readingTime: "5 minut"');
   }
 
   let image = null;
@@ -344,7 +363,8 @@ function loadItem(type, folderName, authors) {
       title: fm.title,
       excerpt: fm.excerpt ?? null,
       image,
-      author,
+      authors: itemAuthors,
+      readingTime: meta.readingTime ?? null,
       html,
     };
   }
@@ -417,7 +437,8 @@ function previewPage(site, locale, items) {
       <span class="type">${esc(i.type)}</span>
       ${i.badge ? `<span class="badge">${esc(i.badge)}</span>` : ''}
       <span>${esc(i.date)}${i.time ? ' ' + esc(i.time) : ''}</span>
-      ${i.author ? `<span class="author"><img src="${esc(i.author.photo)}" alt=""> ${esc(i.author.name)}</span>` : ''}
+      ${(i.authors ?? []).map((a) => `<span class="author"><img src="${esc(a.photo)}" alt=""> ${esc(a.name)}</span>`).join('')}
+      ${i.readingTime ? `<span>${esc(i.readingTime)} čtení</span>` : ''}
     </div>
     <h2>${esc(i.title)}</h2>
     ${i.image ? `<img class="cover" src="${esc(i.image)}" alt="">` : ''}
@@ -438,6 +459,7 @@ ${cards || '<p>Žádné položky.</p>'}
 
 // --- main --------------------------------------------------------------------------
 const authors = loadAuthors();
+checkSharedImages();
 const items = collectItems(authors);
 if (items.length === 0 && errors.length === 0) fail('content/', 'nenalezen žádný obsah');
 
@@ -481,6 +503,10 @@ for (const it of items) {
   if ((it.published || INCLUDE_DRAFTS) && fs.existsSync(imgDir)) {
     fs.cpSync(imgDir, path.join(DIST, it.folderRel, 'images'), { recursive: true });
   }
+}
+// sdílené obrázky (placeholder apod.) v /images
+if (fs.existsSync(path.join(ROOT, 'images'))) {
+  fs.cpSync(path.join(ROOT, 'images'), path.join(DIST, 'images'), { recursive: true });
 }
 if (fs.existsSync(path.join(ROOT, 'authors', 'photos'))) {
   fs.cpSync(path.join(ROOT, 'authors', 'photos'), path.join(DIST, 'authors', 'photos'), { recursive: true });

@@ -1,6 +1,6 @@
 # aiscr-news
 
-Sdílené **aktuality** a **quick-info** pro weby AIS CR (amcr-info, amcr, digiarchiv).
+Sdílené **aktuality** a **quick-info** pro weby AIS CR (aiscr, amcr-info, amcr, digiarchiv).
 Jeden zdroj pravdy: novinka se napíše jednou v Markdownu, označí se, kde se má zobrazit,
 a GitHub Action ji publikuje jako JSON feed na GitHub Pages. Weby si feed stahují za běhu.
 
@@ -8,17 +8,18 @@ a GitHub Action ji publikuje jako JSON feed na GitHub Pages. Weby si feed stahuj
 
 ```
 content/
-  news/                          ← plnohodnotné články
-    2024-08-04-nova-amcr/        ← jedna složka = jeden článek (datum + slug)
-      item.yaml                  ← sdílená metadata (weby, autor, publikováno…)
+  news/                          ← aktuality i delší články
+    2026-07-31-eac/              ← jedna složka = jeden článek (datum + slug)
+      item.yaml                  ← sdílená metadata (weby, autoři, publikováno…)
       cs.md                      ← česká verze (titulek, perex, text)
-      en.md                      ← anglická verze
+      en.md                      ← anglická verze (nepovinná)
       images/                    ← obrázky TOHOTO článku (úvodní i v textu)
     _template/                   ← šablona na kopírování
   quickinfo/                     ← krátké notifikace do banneru (stejný princip)
 authors/
   authors.yaml                   ← registr autorů
   photos/                        ← fotky autorů
+images/                          ← sdílené obrázky (zástupný placeholder.webp)
 config/config.json               ← seznam webů, jazyků, limity obrázků
 ```
 
@@ -27,8 +28,8 @@ config/config.json               ← seznam webů, jazyků, limity obrázků
 1. **Zkopírujte složku `content/news/_template/`** a přejmenujte ji na
    `RRRR-MM-DD-slug` (např. `content/news/2026-09-01-nova-funkce/`).
    Datum a slug článku se berou z názvu složky.
-2. Vyplňte `item.yaml` — na kterých webech se má článek zobrazit, autor,
-   případně úvodní obrázek. Až bude hotovo, přepněte `published: true`.
+2. Vyplňte `item.yaml` — na kterých webech se má článek zobrazit, případně
+   autoři, doba čtení a úvodní obrázek. Až bude hotovo, přepněte `published: true`.
 3. Napište text do `cs.md` (a překlad do `en.md`). Titulek, perex a štítek
    jsou ve frontmatter, tělo je Markdown. Nadpisy začínejte od `##`.
 4. **Obrázky dejte do podsložky `images/`** vedle článku a odkazujte relativně:
@@ -47,11 +48,14 @@ autora a obrázků (je to pár vět do banneru).
    ```yaml
    jana-novakova:
      name: Jana Nováková
-     photo: photos/jana-novakova.jpg
+     role: Datová kurátorka          # nepovinné
+     photo: photos/jana-novakova.webp
    ```
 2. Nahrajte fotku do `authors/photos/` (čtvercová, ideálně ~400×400 px, do 200 kB).
    Bez fotky validace neprojde.
-3. V článku pak stačí `author: jana-novakova` v `item.yaml`.
+3. V článku pak uveďte `authors: [jana-novakova]` v `item.yaml`. Autorů může být víc
+   (`authors: [jana-novakova, tomas-pavlon]`); u krátkých aktualit se autor běžně
+   neuvádí a klíč se prostě vynechá.
 
 ## Co hlídá CI
 
@@ -61,7 +65,7 @@ autora a obrázků (je to pár vět do banneru).
   nepovolený formát obrázku, duplicitní slug.
 - **Varování (u PR jako anotace):** obrázek nad 500 kB, fotka autora nad 200 kB,
   nepoužitý obrázek ve složce článku, klíč na špatném místě
-  (např. `title` v `item.yaml`), příliš dlouhý perex, článek bez autora.
+  (např. `title` v `item.yaml`), příliš dlouhý perex.
 
 ## Výstupy
 
@@ -76,21 +80,25 @@ Tvar položky feedu:
 
 ```json
 {
-  "slug": "nova-amcr",
+  "slug": "eac",
   "type": "news",
-  "date": "2024-08-04",
-  "time": "12:00",
-  "badge": "Novinka",
-  "title": "Nová AMČR spuštěna",
-  "excerpt": "Byla spuštěna nová webová aplikace AMČR.",
-  "image": "https://arup-cas.github.io/aiscr-news/content/news/2024-08-04-nova-amcr/images/cover.svg",
-  "author": { "slug": "ronald-harasim", "name": "Ronald Harasim", "photo": "https://…/photos/ronald-harasim.svg" },
+  "date": "2026-07-31",
+  "time": null,
+  "badge": "Událost",
+  "title": "Výroční setkání EAC v Altamiře",
+  "excerpt": "Reportáž přibližuje hlavní témata…",
+  "image": "https://…/content/news/2026-07-31-eac/images/006_000_nahled.webp",
+  "authors": [
+    { "slug": "tomas-pavlon", "name": "Tomáš Pavloň", "role": "Datový kurátor AMČR", "photo": "https://…/photos/tomas-pavlon.webp" }
+  ],
+  "readingTime": "10 minut",
   "html": "<p>…sanitizované HTML s absolutními URL…</p>"
 }
 ```
 
 - `html` je renderované a **sanitizované** už při generování — konzumenti ho vkládají přes `{@html}`.
 - Položky jsou seřazené od nejnovějších; konzument filtruje podle `type`.
+- `authors` je vždy seznam (může být prázdný), `readingTime` a `time` mohou být `null`.
 - `generated` + ETag od GitHub Pages = levná detekce „nic nového".
 
 ## Kontrola před publikací
@@ -127,4 +135,5 @@ npm run build      # vygeneruje dist/ — otevřete dist/index.html
 INCLUDE_DRAFTS=1 npm run build   # totéž, ale i s koncepty (published: false)
 ```
 
-Nový web se přidává v [config/config.json](config/config.json) (`sites`).
+Weby (`sites`), jazyky a limity obrázků se nastavují v
+[config/config.json](config/config.json). Aktuálně: `aiscr`, `amcr-info`, `amcr`, `digiarchiv`.
