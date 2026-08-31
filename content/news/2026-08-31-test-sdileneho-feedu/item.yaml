@@ -1,7 +1,10 @@
-# DOČASNÝ TESTOVACÍ ČLÁNEK — ověření sdíleného feedu. Po otestování smazat.
+# TESTOVACÍ ČLÁNEK — schovaný (published: false), takže není ve feedech ani na webu.
+# Slouží k opakovanému ověřování řetězce: přepněte published na true, ověřte,
+# a pak vraťte na false. Lokální náhled i ve schovaném stavu:
+#   INCLUDE_DRAFTS=1 npm run build
 sites: [aiscr]
 time: "10:00"
 authors: [tym-ais-cr, tomas-pavlon]
 readingTime: "2 minuty"
 image: images/cover.webp
-published: true
+published: false
