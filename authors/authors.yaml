@@ -7,7 +7,7 @@
 
 tym-ais-cr:
   name: Tým AIS CR
-  role: Archeologický informační systém
+  role: Archeologický informační systém České republiky
   photo: photos/tym-ais-cr.webp
 
 tomas-pavlon:
@@ -29,3 +29,13 @@ robert-antal:
   name: Róbert Antal
   role: Vedoucí Referátu archeologické památkové péče
   photo: photos/robert-antal.webp
+
+david-novak:
+  name: David Novák
+  role: Vedoucí vývoje AIS CR
+  photo: photos/david-novak.jpg
+
+ondrej-svejcar:
+  name: Ondřej Švejcar
+  role: Datový kurátor AMČR
+  photo: photos/ondrej-svejcar.jpg
