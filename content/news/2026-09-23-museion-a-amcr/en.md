@@ -11,10 +11,6 @@ badge: News
 The integration works in both directions. MUSEION sends data to AMČR and reads data back from it, so the two systems stay consistent without retyping.
 Each function corresponds to one of seven scenarios that both systems number the same way, S1–S7; we give the number in brackets so the details are easy to find in the documentation.
 
-![Integration diagram: MUSEION records finds in AMČR through the AMČR-PAS API (S2, S3) and reads vocabularies and updates through OAI-PMH (S1, S4, S5); the AMČR Digital Archive reads museum objects through SOAP (S6); other systems and field apps can write to the AMČR-PAS API too.](images/007_001_schema_en.png)
-
-> *How AMČR and MUSEION talk to each other – and where other systems can connect to AMČR-PAS. Bulk import (S7) runs entirely inside MUSEION, so it is not shown.*
-
 ### From the museum record straight into AMČR-PAS
 
 A recorded find can be sent from MUSEION to AMČR-PAS, the AMČR module for individual finds, with a single button – one at a time or for a whole group of records (S2, S3).
@@ -23,9 +19,9 @@ MUSEION then stores the find's AMČR identifier and links to AMČR and the Digit
 
 Finds exported from MUSEION behave like any other AMČR-PAS record.
 
-![An individual find record in the AMČR Digital Archive, with its map, photograph and persistent DOI link.](images/007_003.webp)
+![Integration diagram showing the easy transfer of selected records from MUSEION to AMČR-PAS (S2, S3).](images/007_001.webp)
 
-> *Once archived, AMČR-PAS finds are published in the AMČR Digital Archive according to their access level, each with its own persistent link.*
+> *A selected record or a whole group of records can be easily sent from MUSEION to AMČR-PAS.*
 
 ### Registration numbers that keep up by themselves
 
@@ -50,10 +46,18 @@ Storage location and valuation are never shared, and no photographs travel this 
 Providing data is covered by a simple, free-of-charge agreement between the museum and the Institute of Archaeology; a [template (Czech)](https://amcr-help.aiscr.cz/metodika/dohody.html#museion) is published in the AMČR help.
 The Institute does not keep copies of the object data and always credits the museum as its source.
 
+![Visualization of objects from museum collections displayed through their link to AMČR (S6).](images/007_002.webp)
+
+> *The AMČR Digital Archive can provide information about specific objects held in museum collections.*
+
 ### Bulk import from a spreadsheet
 
 For larger sets of finds, MUSEION has a new bulk-import wizard (S7).
 It works with a simplified 31-field spreadsheet that can be filled from a licensed archaeological organisation's records or an older spreadsheet register, and the original find numbers are kept.
+
+![Diagram showing data entry into a spreadsheet and its subsequent import into MUSEION (S7).](images/007_003.webp)
+
+> *Collection object data can be bulk imported into MUSEION using a pre-filled spreadsheet.*
 
 ### A shared language
 
@@ -68,9 +72,9 @@ It is not reserved for a single vendor. **Any integrator** working with an autho
 The [developer reference](https://arup-cas.github.io/aiscr-api-home/pas-api/) documents the endpoints, the XML element contract, status codes, rate limits and retries, with worked examples in cURL and Python.
 The API is a natural fit for **offline field applications for recording finds**, which collect data without a connection and submit it once one is available.
 
-![A find held in the palm and recorded in AMČR-PAS on a mobile phone, out in the field.](images/007_002.webp)
+![Diagram showing the integration of AMČR with other systems.](images/007_004.webp)
 
-> *Recording a find in the field. Apps from other developers can write to AMČR-PAS the same way.*
+> *The pilot MUSEION–AMČR integration paves the way for easy integration of AMČR with other systems.*
 
 ## What comes next
 
