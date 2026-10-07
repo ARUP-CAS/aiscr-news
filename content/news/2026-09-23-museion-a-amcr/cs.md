@@ -11,10 +11,6 @@ badge: Novinka
 Propojení nefunguje jen jedním směrem. MUSEION do AMČR data posílá, ale také je z ní čte, takže oba systémy mohou zůstat v souladu bez ručního přepisování.
 Jednotlivé funkce odpovídají sedmi scénářům, které oba systémy shodně označují S1–S7; v textu je uvádíme v závorce, aby šlo snadno dohledat podrobnosti v dokumentaci.
 
-![Schéma propojení: MUSEION zapisuje nálezy do AMČR přes AMČR-PAS API (S2, S3), z AMČR načítá hesláře a aktualizace přes OAI-PMH (S1, S4, S5) a Digitální archiv AMČR čte předměty ze sbírek muzeí přes SOAP (S6); do AMČR-PAS API mohou zapisovat i další systémy a terénní aplikace.](images/007_001_schema_cs.png)
-
-> *Jak spolu AMČR a MUSEION komunikují – a kudy se k AMČR-PAS mohou připojit další systémy. Hromadný import (S7) probíhá jen uvnitř MUSEIONu, proto ve schématu není.*
-
 ### Z muzejní evidence rovnou do AMČR-PAS
 
 Zapsaný nález lze z MUSEIONu jedním tlačítkem odeslat do [AMČR-PAS](https://amcr-help.aiscr.cz/amcr/amcr-pas/), modulu pro evidenci samostatných nálezů – jednotlivě i hromadně pro celou skupinu záznamů (S2, S3).
@@ -23,9 +19,9 @@ MUSEION pak k předmětu uloží identifikátor nálezu v AMČR a odkazy do AMČ
 
 Nálezy zapsané z MUSEIONu se v AMČR chovají stejně jako jakékoli jiné záznamy AMČR-PAS.
 
-![Záznam samostatného nálezu v Digitálním archivu AMČR s mapou, fotografií a trvalým odkazem DOI.](images/007_003.webp)
+![Vizualizace snadného přenosu vybraných záznamů mezi MUSEION a AMČR-PAS, S2 a S3.](images/007_001.webp)
 
-> *Po archivaci se nálezy z AMČR-PAS zpřístupňují v Digitálním archivu AMČR podle nastavené přístupnosti, každý se svým trvalým odkazem.*
+> *Vybraný záznam nebo celou skupinu záznamů z MUSEION lze snadno odeslat do AMČR-PAS.*
 
 ### Inventární číslo, které se samo doplní
 
@@ -53,11 +49,19 @@ Místo uložení předmětu ani jeho ocenění se nesdílí nikdy a fotografie s
 Poskytování údajů upravuje jednoduchá bezúplatná dohoda mezi muzeem a ARÚ, jejíž [vzor je ke stažení](https://amcr-help.aiscr.cz/metodika/dohody.html#vzory-dokumentů-ke-stažení) v nápovědě AMČR.
 ARÚ údaje o předmětech trvale nepřebírá a vždy je zobrazuje s uvedením muzea jako zdroje.
 
+![Vizualizace zobrazení předmětů z muzejních s sbírek na základě jejich vazby na AMČR, S6.](images/007_002.webp)
+
+> *U záznamu v Digitálním archivu můžete získat informace o konkrétních předmětech v muzejních sbírkách.*
+
 ### Hromadný import z tabulky
 
 Pro větší soubory nálezů nabízí MUSEION nového průvodce hromadným importem (S7).
 Pracuje se zjednodušenou tabulkou o 31 údajích, kterou lze naplnit například z podkladů oprávněné archeologické organizace nebo ze starší excelové evidence; původní čísla nálezů se při importu neztratí.
 Jednotná tabulka může do budoucna zjednodušit i samotné předávání nálezů do muzejních sbírek.
+
+![Schéma zápisu údajů do tabulky a její následný import do MUSEION, S7.](images/007_003.webp)
+
+> *Údaje o sbírkových předmětech lze do MUSEION hromadně importovat formou předvyplněné tabulky.*
 
 ### Společný jazyk obou systémů
 
@@ -74,9 +78,9 @@ MUSEION je jeho prvním, referenčním klientem.
 Rozhraní je popsané v anglické [referenční dokumentaci pro vývojáře](https://arup-cas.github.io/aiscr-api-home/pas-api/) včetně struktury dat, stavových kódů a ukázek v cURL a Pythonu, takže je lze využít i mimo české prostředí.
 Hodí se například pro **terénní aplikace pro evidenci nálezů**, které pracují bez stálého připojení a data do AMČR odešlou, až když je připojení k dispozici.
 
-![Nález v dlani a jeho zápis do AMČR-PAS v mobilním telefonu přímo v terénu.](images/007_002.webp)
+![Schéma propojení AMČR s dalšími systémy.](images/007_004.webp)
 
-> *Zápis nálezu přímo v terénu. Stejnou cestou mohou do AMČR-PAS zapisovat i aplikace dalších vývojářů.*
+> *Díky pilotnímu projektu propojení MUSEION-AMČR se otevírá cesta pro snadnou integraci AMČR s dalšími systémy.*
 
 ## Co bude dál
 
