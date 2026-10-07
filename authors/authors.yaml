@@ -9,33 +9,58 @@ tym-ais-cr:
   name: Tým AIS CR
   role: Archeologický informační systém České republiky
   photo: photos/tym-ais-cr.webp
+  url: https://www.aiscr.cz/#contact
 
 tomas-pavlon:
   name: Tomáš Pavloň
   role: Datový kurátor AMČR
   photo: photos/tomas-pavlon.webp
+  url: https://www.arub.cz/pracovnici/lecbychova-olga/
 
 david-spacil:
   name: David Spáčil
   role: Datový kurátor
   photo: photos/david-spacil.webp
+  url: https://www.arub.cz/pracovnici/spacil-david/
 
 martina-kudlikova:
   name: Martina Kudlíková
   role: Výkonná redaktorka PV
   photo: photos/martina-kudlikova.webp
+  url: https://www.arub.cz/pracovnici/kudlikova-martina/
 
 robert-antal:
   name: Róbert Antal
   role: Vedoucí Referátu archeologické památkové péče
   photo: photos/robert-antal.webp
+  url: https://www.arub.cz/pracovnici/antal-robert/
 
 david-novak:
   name: David Novák
   role: Vedoucí vývoje AIS CR
-  photo: photos/david-novak.jpg
+  photo: photos/david-novak.webp
+  url: https://www.arup.cas.cz/kontakty/personalia/aktivni-zamestnanci/novak/
 
 ondrej-svejcar:
   name: Ondřej Švejcar
   role: Datový kurátor AMČR
-  photo: photos/ondrej-svejcar.jpg
+  photo: photos/ondrej-svejcar.webp
+  url: https://www.arup.cas.cz/kontakty/personalia/aktivni-zamestnanci/svejcar/
+  
+olga-lecbychova:
+  name: Olga Lečbychová
+  role: Archeologický ústav AV ČR, Brno
+  photo: photos/olga-lecbychova.webp
+  url: https://www.arub.cz/pracovnici/lecbychova-olga/
+
+ondrej-svejcar:
+  name: Ondřej Švejcar
+  role: Archeologický ústav AV ČR, Praha
+  photo: photos/ondrej-svejcar.webp
+  url: https://www.arup.cas.cz/kontakty/personalia/aktivni-zamestnanci/svejcar/
+
+petr-pajdla:
+  name: Petr Pajdla
+  role: Archeologický ústav AV ČR, Brno
+  photo: photos/petr-pajdla.webp
+  url: https://www.arub.cz/pracovnici/pajdla-petr/
