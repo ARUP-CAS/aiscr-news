@@ -29,3 +29,27 @@ robert-antal:
   name: Róbert Antal
   role: Vedoucí Referátu archeologické památkové péče
   photo: photos/robert-antal.webp
+
+david-novak:
+  name: David Novák
+  role: Archeologický ústav AV ČR, Praha
+  photo: photos/david-novak.webp
+  url: https://www.arup.cas.cz/kontakty/personalia/aktivni-zamestnanci/novak/
+
+olga-lecbychova:
+  name: Olga Lečbychová
+  role: Archeologický ústav AV ČR, Brno
+  photo: photos/olga-lecbychova.webp
+  url: https://www.arub.cz/pracovnici/lecbychova-olga/
+
+ondrej-svejcar:
+  name: Ondřej Švejcar
+  role: Archeologický ústav AV ČR, Praha
+  photo: photos/ondrej-svejcar.webp
+  url: https://www.arup.cas.cz/kontakty/personalia/aktivni-zamestnanci/svejcar/
+
+petr-pajdla:
+  name: Petr Pajdla
+  role: Archeologický ústav AV ČR, Brno
+  photo: photos/petr-pajdla.webp
+  url: https://www.arub.cz/pracovnici/pajdla-petr/
