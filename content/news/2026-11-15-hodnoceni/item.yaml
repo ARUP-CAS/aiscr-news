@@ -1,1 +1,24 @@
+# ŠABLONA — zkopírujte celou složku _template a přejmenujte ji na RRRR-MM-DD-slug,
+# např. content/news/2026-09-01-nova-funkce/. Složky začínající "_" build ignoruje.
+#
+# Datum publikace a slug se berou z názvu složky — tady se nevyplňují.
 
+# Na kterých webech se článek zobrazí (povolené: aiscr, amcr-info, amcr, digiarchiv):
+sites: [amcr-info]
+
+# Volitelný čas publikace (HH:MM):
+# time: "12:00"
+
+# Autoři — každý slug musí existovat v authors/authors.yaml (viz návod v README).
+# Nepovinné; krátké aktuality autora běžně nemají. Lze uvést i více autorů.
+# authors: [tomas-pavlon, robert-antal]
+
+# Volitelná doba čtení (u delších článků):
+# readingTime: "5 minut"
+
+# Úvodní obrázek — soubor dejte do podsložky images/ vedle tohoto souboru.
+# Sdílený zástupný obrázek: /images/placeholder.webp
+# image: images/cover.webp
+
+# false = článek se nikam nepublikuje (rozepsaný koncept):
+published: false
