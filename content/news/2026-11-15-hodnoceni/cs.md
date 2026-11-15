@@ -130,4 +130,4 @@ Tak nám držte palce! Nebo vlastně – držte je i sobě. AIS CR totiž buduje
 
 - [Michael Prouza: Velké výzkumné infrastruktury jsou českou vstupenkou do nejlepší světové vědy](https://vedavyzkum.cz/rozhovory-a-osobnosti/rozhovory/michael-prouza-velke-vyzkumne-infrastruktury-jsou-ceskou-vstupenkou-do-nejlepsi-svetove-vedy)
 
-- [Vladislava Vojtíšková: Velké výzkumné infrastruktury stojí před nejistou budoucností](https://vedavyzkum.cz/analyzy/analyzy/velke-vyzkumne-infrastruktury-stoji-pred-nejistou-budoucnosti)
+- [Velké výzkumné infrastruktury stojí před nejistou budoucností](https://vedavyzkum.cz/analyzy/analyzy/velke-vyzkumne-infrastruktury-stoji-pred-nejistou-budoucnosti)
